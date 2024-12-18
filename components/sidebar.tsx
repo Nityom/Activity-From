@@ -1,18 +1,34 @@
 import React from 'react';
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 const Sidebar: React.FC = () => {
   return (
     <NavigationMenu>
-      <NavigationMenuTrigger>Menu</NavigationMenuTrigger>
-      <NavigationMenuContent>
-        <NavigationMenuList>
-          <NavigationMenuItem>
+      <NavigationMenuList>
+        {/* First navigation item */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Menu</NavigationMenuTrigger>
+          <NavigationMenuContent>
             <NavigationMenuLink href="/activity">Activity</NavigationMenuLink>
-          </NavigationMenuItem>
-          {/* Add more navigation items as needed */}
-        </NavigationMenuList>
-      </NavigationMenuContent>
+            {/* Add more links inside this content if needed */}
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        {/* Additional navigation items can be added here */}
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Another Menu</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href="/another">Another Link</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
     </NavigationMenu>
   );
 };
