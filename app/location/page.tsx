@@ -239,14 +239,14 @@ export default function LocationFormComponent() {
             <div className="flex gap-4 mt-4">
               <Button
                 type="button"
-                className="bg-gray-200 text-gray-800 py-2 px-4 rounded-2xl text-sm hover:text-white"
+                className="bg-gray-200 text-gray-800 py-2 px-4 rounded-2xl text-sm hover:text-white hover:bg-slate-800"
                 onClick={goToPreviousPage}
               >
                 Previous
               </Button>
               <Button
                 type="submit"
-                className="bg-black text-white py-2 px-4 rounded-2xl text-sm"
+                className="bg-slate-800 text-white py-2 px-4 rounded-2xl text-sm"
               >
                 Submit
               </Button>

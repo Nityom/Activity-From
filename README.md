@@ -1,17 +1,14 @@
-# Project Name
+# Activity Form
+
+## Live Link: https://activity-from.vercel.app
 
 ## Tech Stack Requirements
 
-Your submission must use the following technologies:
+This submission must use the following technologies:
 
 - **Programming Language**: TypeScript
 - **Framework**: Next.js
 
-You are free to utilize any libraries of your choice for:
-
-- Form handling
-- Styling
-- Additional functionalities
 
 ## Feature Requirements
 
@@ -34,11 +31,11 @@ To get started with this project, follow these steps:
 
 1. Clone the repository:
         ```bash
-        git clone <repository-url>
+        git clone <https://github.com/Nityom/Activity-From>
         ```
 2. Navigate to the project directory:
         ```bash
-        cd project-name
+        cd Activity-From
         ```
 3. Install the dependencies:
         ```bash
@@ -48,49 +45,3 @@ To get started with this project, follow these steps:
         ```bash
         npm run dev
         ```
-
-## Folder Structure
-
-```
-project-name/
-├── components/
-│   ├── ActivityDetails.tsx
-│   ├── LocationDetails.tsx
-│   └── ...
-├── pages/
-│   ├── index.tsx
-│   ├── activity.tsx
-│   ├── location.tsx
-│   └── ...
-├── styles/
-│   ├── globals.css
-│   └── ...
-├── utils/
-│   ├── formValidation.ts
-│   └── ...
-├── package.json
-└── ...
-```
-
-## Contributing
-
-If you would like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch:
-        ```bash
-        git checkout -b feature-branch
-        ```
-3. Make your changes and commit them:
-        ```bash
-        git commit -m "Description of changes"
-        ```
-4. Push to the branch:
-        ```bash
-        git push origin feature-branch
-        ```
-5. Create a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.

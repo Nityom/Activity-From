@@ -257,7 +257,7 @@ export default function FormComponent() {
           type="submit"
           className="w-[200px] h-[45px] rounded-3xl text-white bg-slate-800 hover:bg-slate-600"
         >
-          Create Activity
+          Save and Continue
         </Button>
       </form>
     </Form>
