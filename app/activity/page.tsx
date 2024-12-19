@@ -56,7 +56,7 @@ export default function FormComponent() {
   useEffect(() => {
     const savedData = JSON.parse(localStorage.getItem("formData") || "{}");
     form.reset({ ...form.getValues(), ...savedData });
-  }, []);
+  }, [form]); // Include 'form' in the dependency array
 
   // Handle form submission
   interface FormData {
@@ -223,42 +223,41 @@ export default function FormComponent() {
 
         {/* Participants */}
         <FormItem className="flex flex-col gap-2">
-  <FormLabel className="text-black">How many members can take part in the activity*</FormLabel>
-  <div className="flex gap-4">
-    <FormField
-      name="minParticipants"
-      control={form.control}
-      render={({ field }) => (
-        <div className="flex-1"> {/* Wrapping div for flex behavior */}
-          <FormControl>
-            <Input placeholder="Minimum Numbers" {...field} />
-          </FormControl>
-          <FormMessage className="text-red-500 text-sm" />
-        </div>
-      )}
-    />
-    <FormField
-      name="maxParticipants"
-      control={form.control}
-      render={({ field }) => (
-        <div className="flex-1"> {/* Wrapping div for flex behavior */}
-          <FormControl>
-            <Input placeholder="Maximum Numbers" {...field} />
-          </FormControl>
-          <FormMessage className="text-red-500 text-sm" />
-        </div>
-      )}
-    />
-  </div>
-</FormItem>
-
+          <FormLabel className="text-black">How many members can take part in the activity*</FormLabel>
+          <div className="flex gap-4">
+            <FormField
+              name="minParticipants"
+              control={form.control}
+              render={({ field }) => (
+                <div className="flex-1"> {/* Wrapping div for flex behavior */}
+                  <FormControl>
+                    <Input placeholder="Minimum Numbers" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-red-500 text-sm" />
+                </div>
+              )}
+            />
+            <FormField
+              name="maxParticipants"
+              control={form.control}
+              render={({ field }) => (
+                <div className="flex-1"> {/* Wrapping div for flex behavior */}
+                  <FormControl>
+                    <Input placeholder="Maximum Numbers" {...field} />
+                  </FormControl>
+                  <FormMessage className="text-red-500 text-sm" />
+                </div>
+              )}
+            />
+          </div>
+        </FormItem>
 
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-[200px] h-[45px] rounded-3xl text-white bg-slate-900"
+          className="w-[200px] h-[45px] rounded-3xl text-white bg-slate-800 hover:bg-slate-600"
         >
-          Save and Continue
+          Create Activity
         </Button>
       </form>
     </Form>
