@@ -1,124 +1,107 @@
 "use client";
 
-import React, { useState } from 'react';
-import { 
-  NavigationMenu, 
-  NavigationMenuContent, 
-  NavigationMenuItem, 
-  NavigationMenuLink, 
-  NavigationMenuList, 
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle 
-} from "@/components/ui/navigation-menu";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import React from 'react';
+import Image from 'next/image';
+import { UserCircleIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuList } from "@/components/ui/navigation-menu";
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
 
-interface NavbarProps {
-  profileImage?: string;
-  userName?: string;
-}
+const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-const Navbar: React.FC<NavbarProps> = ({ 
-  profileImage = "/api/placeholder/40/40", 
-  userName = "John Doe" 
-}) => {
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto px-4 flex items-center justify-between py-4">
-        {/* Logo */}
-        <div className="text-2xl font-bold text-gray-800">
-          MyLogo
+    <nav className="relative">
+      {/* Main Navbar */}
+      <div className="h-16 md:h-[10vh] border-b flex items-center justify-between px-4 md:px-6 py-2 w-full bg-white">
+        <div className="flex items-center space-x-4">
+          {/* Logo with responsive sizing */}
+          <div className="relative w-[80px] md:w-[150px] h-80 md:h-100">
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              fill
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+          </div>
+
+          {/* User Profile Icon for Mobile */}
+          {isMobile && (
+            <NavigationMenuItem className="flex items-center space-x-2">
+              <UserCircleIcon className="w-8 h-8 text-gray-600" />
+            </NavigationMenuItem>
+          )}
         </div>
 
-        {/* Desktop Profile and Actions */}
-        <div className="hidden md:flex items-center space-x-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Avatar className="cursor-pointer">
-                <AvatarImage src={profileImage} alt={`${userName}'s profile`} />
-                <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center space-x-4">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            onClick={toggleMenu}
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <Button
+            variant="ghost"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2"
           >
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMobileMenuOpen ? (
+              <XMarkIcon className="w-6 h-6" />
+            ) : (
+              <Bars3Icon className="w-6 h-6" />
+            )}
           </Button>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:block">
+          <NavigationMenu>
+            <NavigationMenuList className="flex items-center space-x-4">
+              <NavigationMenuItem className="flex items-center space-x-2">
+                <UserCircleIcon className="w-8 h-8 md:w-10 md:h-10 text-gray-600" />
+                <span className="font-medium">Profile</span>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {isMenuOpen && (
-        <div className="fixed md:hidden inset-0 bg-white z-40 pt-20">
-          <div className="container mx-auto px-4 space-y-4">
-            {/* Mobile Profile */}
-            <div className="flex items-center space-x-4 pb-4 border-b">
-              <Avatar>
-                <AvatarImage src={profileImage} alt={`${userName}'s profile`} />
-                <AvatarFallback>{userName.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <span className="text-lg font-medium">{userName}</span>
-            </div>
-
-            <NavigationMenuLink 
-              className="block py-3 text-xl hover:bg-gray-100 rounded"
-              href="#"
-            >
-              Products
-            </NavigationMenuLink>
-            <NavigationMenuLink 
-              className="block py-3 text-xl hover:bg-gray-100 rounded"
-              href="#"
-            >
-              About
-            </NavigationMenuLink>
-            <NavigationMenuLink 
-              className="block py-3 text-xl hover:bg-gray-100 rounded"
-              href="#"
-            >
-              Contact
-            </NavigationMenuLink>
-            
-            <div className="pt-4 space-y-2">
-              <Button 
-                variant="outline" 
-                className="w-full"
-              >
-                Logout
-              </Button>
-            </div>
+      {/* Mobile Menu */}
+      {isMobile && (
+        <div
+          className={`absolute top-16 left-0 right-0 bg-white border-b
+            transform transition-transform duration-300 ease-in-out
+            ${isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}
+            ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0'}
+            ${isMobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}
+          `}
+        >
+          <div className="p-4">
+            <NavigationMenuItem className="flex items-center space-x-2 py-2">
+              <UserCircleIcon className="w-8 h-8 text-gray-600" />
+              <span className="font-medium">Profile</span>
+            </NavigationMenuItem>
           </div>
         </div>
+      )}
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+          style={{ top: '64px' }} // height of navbar
+        />
       )}
     </nav>
   );
