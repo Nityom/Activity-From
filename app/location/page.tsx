@@ -24,7 +24,6 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useEffect, useState } from 'react';
 
-// VisuallyHidden component to hide elements visually but keep them accessible
 const VisuallyHidden: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <span className="sr-only">{children}</span>
 );
@@ -56,7 +55,6 @@ export default function LocationFormComponent() {
     },
   });
 
-  // Load saved data from localStorage
   useEffect(() => {
     const savedData = localStorage.getItem('locationFormData');
     if (savedData) {
@@ -64,7 +62,6 @@ export default function LocationFormComponent() {
     }
   }, [form]);
 
-  // Save data to localStorage on form change
   useEffect(() => {
     const subscription = form.watch((value) => {
       localStorage.setItem('locationFormData', JSON.stringify(value));
@@ -76,9 +73,23 @@ export default function LocationFormComponent() {
     const previousData = localStorage.getItem('formData');
     const previousFormData = previousData ? JSON.parse(previousData) : {};
     console.log("Form Data:", previousFormData, data);
-    
+
     setShowSuccessModal(true);
-    localStorage.removeItem('locationFormData'); // Clear saved data on submit
+
+    // Clear saved data in localStorage
+    localStorage.removeItem('locationFormData');
+    localStorage.removeItem('formData');
+
+    // Reset the form fields
+    form.reset({
+      addressLine1: "",
+      addressLine2: "",
+      zipCode: "",
+      city: "",
+      state: "",
+      contactNumber: "",
+      contactName: "",
+    });
   };
 
   const goToPreviousPage = () => {
@@ -90,14 +101,12 @@ export default function LocationFormComponent() {
       <div className="m-10 w-[60vw]">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Location Details */}
             <div>
               <h1 className="font-bold text-2xl mb-1">Location Details</h1>
               <p className="text-sm text-gray-500 mb-4">
                 Please specify the address where the activity takes place
               </p>
               <br />
-              {/* Address Line 1 */}
               <FormField
                 name="addressLine1"
                 control={form.control}
@@ -115,8 +124,6 @@ export default function LocationFormComponent() {
                 )}
               />
               <br />
-
-              {/* Address Line 2 */}
               <FormField
                 name="addressLine2"
                 control={form.control}
@@ -134,8 +141,6 @@ export default function LocationFormComponent() {
                 )}
               />
               <br />
-
-              {/* Zip Code */}
               <FormField
                 name="zipCode"
                 control={form.control}
@@ -150,8 +155,6 @@ export default function LocationFormComponent() {
                 )}
               />
               <br />
-
-              {/* City and State */}
               <div className="flex gap-4">
                 <FormField
                   name="city"
@@ -167,7 +170,6 @@ export default function LocationFormComponent() {
                   )}
                 />
                 <br />
-
                 <FormField
                   name="state"
                   control={form.control}
@@ -184,18 +186,13 @@ export default function LocationFormComponent() {
               </div>
             </div>
             <br />
-
-            {/* Separator */}
             <hr className="border-gray-300" />
-
-            {/* Contact Details */}
             <div>
               <h1 className="font-bold text-2xl mb-1">Contact Details</h1>
               <p className="text-sm text-gray-500 mb-4">
                 Please provide contact information for this activity
               </p>
               <br />
-
               <div className="flex gap-4">
                 <FormField
                   name="contactNumber"
@@ -223,7 +220,6 @@ export default function LocationFormComponent() {
                   )}
                 />
                 <br />
-
                 <FormField
                   name="contactName"
                   control={form.control}
@@ -240,8 +236,6 @@ export default function LocationFormComponent() {
               </div>
             </div>
             <br />
-
-            {/* Buttons */}
             <div className="flex gap-4 mt-4">
               <Button
                 type="button"
@@ -259,30 +253,25 @@ export default function LocationFormComponent() {
             </div>
           </form>
         </Form>
-
         <br />
         <br />
         <hr className="border-gray-300" />
       </div>
-
-      {/* Success Modal */}
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="sm:max-w-md flex flex-col items-center p-8">
           <DialogTitle>
             <VisuallyHidden>Form Submission Success</VisuallyHidden>
           </DialogTitle>
-          <button 
+          <button
             onClick={() => setShowSuccessModal(false)}
             className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100"
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Close</span>
           </button>
-          
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
             <Check className="h-10 w-10 text-green-500" />
           </div>
-          
           <h2 className="text-2xl font-semibold mt-6">Form Submitted</h2>
         </DialogContent>
       </Dialog>

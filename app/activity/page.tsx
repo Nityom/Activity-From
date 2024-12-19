@@ -256,7 +256,7 @@ export default function FormComponent() {
         {/* Submit Button */}
         <Button
           type="submit"
-          className="bg-black w-[200px] h-[45px] rounded-3xl text-white bg-slate-900"
+          className="w-[200px] h-[45px] rounded-3xl text-white bg-slate-900"
         >
           Save and Continue
         </Button>
