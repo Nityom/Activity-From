@@ -112,7 +112,9 @@ export default function LocationFormComponent() {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-black">Address Line 1 *</FormLabel>
+                    <FormLabel className="text-black">
+                      Address Line 1 <span className="text-red-500">*</span>
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="House Number and Street Name"
@@ -146,7 +148,9 @@ export default function LocationFormComponent() {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-black">Zip Code *</FormLabel>
+                    <FormLabel className="text-black">
+                      Zip Code <span className="text-red-500">*</span>
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="e.g., 123 467" {...field} />
                     </FormControl>
@@ -161,7 +165,9 @@ export default function LocationFormComponent() {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem className="flex-1">
-                      <FormLabel className="text-black"> City *</FormLabel>
+                      <FormLabel className="text-black">
+                        City <span className="text-red-500">*</span>
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Your City" {...field} />
                       </FormControl>
@@ -175,7 +181,9 @@ export default function LocationFormComponent() {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem className="flex-1">
-                      <FormLabel className="text-black"> State *</FormLabel>
+                      <FormLabel className="text-black">
+                        State <span className="text-red-500">*</span>
+                      </FormLabel>
                       <FormControl>
                         <Input placeholder="Your State" {...field} />
                       </FormControl>
@@ -199,7 +207,9 @@ export default function LocationFormComponent() {
                   control={form.control}
                   render={({ field }) => (
                     <FormItem className="flex-1">
-                      <FormLabel className="text-black">Contact Number *</FormLabel>
+                      <FormLabel className="text-black">
+                        Contact Number <span className="text-red-500">*</span>
+                      </FormLabel>
                       <FormControl>
                         <PhoneInput
                           country={'in'}
@@ -258,23 +268,30 @@ export default function LocationFormComponent() {
         <hr className="border-gray-300" />
       </div>
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
-        <DialogContent className="sm:max-w-md flex flex-col items-center p-8">
-          <DialogTitle>
-            <VisuallyHidden>Form Submission Success</VisuallyHidden>
-          </DialogTitle>
-          <button
-            onClick={() => setShowSuccessModal(false)}
-            className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100"
-          >
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </button>
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-            <Check className="h-10 w-10 text-green-500" />
-          </div>
-          <h2 className="text-2xl font-semibold mt-6">Form Submitted</h2>
-        </DialogContent>
-      </Dialog>
+  <DialogContent className="sm:max-w-md flex flex-col items-center p-8">
+    <DialogTitle>
+      <VisuallyHidden>Form Submission Success</VisuallyHidden>
+    </DialogTitle>
+    <button
+      onClick={() => setShowSuccessModal(false)}
+      className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100"
+    >
+      <X className="h-4 w-4" />
+      <VisuallyHidden>Close</VisuallyHidden>
+    </button>
+
+    {/* Outer purple circle */}
+    <div className="flex items-center justify-center w-24 h-24 rounded-full bg-blue-100">
+      {/* Inner green circle for the check mark */}
+      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-400">
+        <Check className="h-12 w-12 text-green-100" /> {/* Increased size and changed color */}
+      </div>
+    </div>
+
+    <h2 className=" text-lg font-semibold text-gray-900">Form Submitted</h2>
+  </DialogContent>
+</Dialog>
+
     </>
   );
 }

@@ -91,7 +91,9 @@ export default function FormComponent() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-black">Activity name *</FormLabel>
+              <FormLabel className="text-black">
+                Activity name <span className="text-red-500">*</span>
+              </FormLabel>
               <FormControl>
                 <Input placeholder="e.g., Cooking class in Palo Alto" {...field} />
               </FormControl>
@@ -107,7 +109,7 @@ export default function FormComponent() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-black">
-                Select the best category to describe your activity *
+                Select the best category to describe your activity <span className="text-red-500">*</span>
               </FormLabel>
               <RadioGroup
                 value={field.value}
@@ -158,7 +160,9 @@ export default function FormComponent() {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-black">About the Activity *</FormLabel>
+              <FormLabel className="text-black">
+                About the Activity <span className="text-red-500">*</span>
+              </FormLabel>
               <FormControl>
                 <Textarea placeholder="Activity Description" {...field} />
               </FormControl>
@@ -174,7 +178,7 @@ export default function FormComponent() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-black">
-                Please select the Activity Type *
+                Please select the Activity Type <span className="text-red-500">*</span>
               </FormLabel>
               <RadioGroup
                 value={field.value}
@@ -201,7 +205,7 @@ export default function FormComponent() {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-black">
-                Please select the type of location *
+                Please select the type of location <span className="text-red-500">*</span>
               </FormLabel>
               <RadioGroup
                 value={field.value}
@@ -223,7 +227,9 @@ export default function FormComponent() {
 
         {/* Participants */}
         <FormItem className="flex flex-col gap-2">
-          <FormLabel className="text-black">How many members can take part in the activity*</FormLabel>
+          <FormLabel className="text-black">
+            How many members can take part in the activity <span className="text-red-500">*</span>
+          </FormLabel>
           <div className="flex gap-4">
             <FormField
               name="minParticipants"
