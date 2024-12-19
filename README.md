@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Name
+
+## Tech Stack Requirements
+
+Your submission must use the following technologies:
+
+- **Programming Language**: TypeScript
+- **Framework**: Next.js
+
+You are free to utilize any libraries of your choice for:
+
+- Form handling
+- Styling
+- Additional functionalities
+
+## Feature Requirements
+
+### 1. Multi-Page Form with Tabs
+
+- **Tabs:**
+    - Activity Details
+    - Location Details
+- **Navigation:**
+    - Users must complete and validate each step before proceeding to the next.
+    - Errors in any field should prevent navigation to the next step.
+
+### 2. Retain Form Data
+
+- Previously entered data must persist when navigating back to a previous step.
 
 ## Getting Started
 
-First, run the development server:
+To get started with this project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Clone the repository:
+        ```bash
+        git clone <repository-url>
+        ```
+2. Navigate to the project directory:
+        ```bash
+        cd project-name
+        ```
+3. Install the dependencies:
+        ```bash
+        npm install
+        ```
+4. Run the development server:
+        ```bash
+        npm run dev
+        ```
+
+## Folder Structure
+
+```
+project-name/
+├── components/
+│   ├── ActivityDetails.tsx
+│   ├── LocationDetails.tsx
+│   └── ...
+├── pages/
+│   ├── index.tsx
+│   ├── activity.tsx
+│   ├── location.tsx
+│   └── ...
+├── styles/
+│   ├── globals.css
+│   └── ...
+├── utils/
+│   ├── formValidation.ts
+│   └── ...
+├── package.json
+└── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+If you would like to contribute to this project, please follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Fork the repository.
+2. Create a new branch:
+        ```bash
+        git checkout -b feature-branch
+        ```
+3. Make your changes and commit them:
+        ```bash
+        git commit -m "Description of changes"
+        ```
+4. Push to the branch:
+        ```bash
+        git push origin feature-branch
+        ```
+5. Create a pull request.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
